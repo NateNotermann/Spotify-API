@@ -4,15 +4,14 @@ import os
 import base64
 from requests import post, get
 import json
-# from flask import Flask, render_template
-
+from flask import Flask, render_template
 
 load_dotenv() # calls ths "load_dot_env" function to load the .env
 client_id = os.getenv("CLIENT_ID")
 client_secret = os.getenv("CLIENT_SECRET")
 
 
-# request token
+# -- request token --
 def get_token():
         # concatenate client_id and client_secret as auth_string
     auth_string = client_id + ":" + client_secret
@@ -36,7 +35,7 @@ def get_token():
     return token
 
 
-# future request will use this token also
+# -- future request will use this token also --
 def get_auth_header(token):
     return {"Authorization": "Bearer " + token}
 
@@ -53,8 +52,6 @@ def search_for_artist(token, artist_name):
         return None
     
     return json_result[0]
-
-
     # print(json_result)
     # print(json_result.artist.items[0].name)
 
@@ -63,10 +60,20 @@ token = get_token()
 result = search_for_artist(token, "Taylor Swift")
 
 print(result["name"] + ".", "Total Followers:", result["followers"]["total"])
-
-
 print(result["images"][0]["url"])
 
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    p = '<p>' + result["name"] + '<p>'
+    img_html = '<img src="' + result["images"][0]["url"] + '"' + ' alt="Example Image">'
+
+    return 'Hello, World!' + p + img_html
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # ---- Example result ----
 # {'artists': 
