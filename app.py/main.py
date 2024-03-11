@@ -59,11 +59,12 @@ def search_for_artist(token, artist_name):
 
 token = get_token()
 # print('token:', token)
-result = search_for_artist(token, "Taylor Swift")
+# result = search_for_artist(token, "Taylor Swift")
+result = search_for_artist(token, "yeah yeah yeah")
 
 print(result["name"] + ".", "Total Followers:", result["followers"]["total"])
 print(result["images"][0]["url"])
-
+print(result)
 app = Flask(__name__)
 
 
