@@ -4,9 +4,6 @@
 # python virtual environment packages
 .venv
 
-# file to test the .gitignore
-test.js
-
 
 # Mac Auto-Generated Files and code editor files
 .DS_Store
