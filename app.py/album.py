@@ -70,10 +70,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    p = '<p>' + result["name"] + '<p>'
+    p = '<p>' + 'I searched for my favorite artist: ' + result["name"] + '<p>'
+    p2 = '<p>This is their Spotify profile art.</p>'
     img_html = '<img src="' + result["images"][0]["url"] + '"' + ' alt="Example Image">'
 
-    return 'Hello, World!' + p + img_html
+    return 'Welcome to my Spotify API Test. It uses Python & Flask., ' + p + p2 + img_html
 
 if __name__ == '__main__':
     app.run(debug=True)
